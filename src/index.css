@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+:root {
+   --col1 : #0b004e ;
+   --col2 : #1d152f ;
+   --col3 : #002834 ;
+   --col4 : #8f50ec ;
+   --col5 : #441091 ;
+   --col6 : #1e0f7c ;
+   --col7 : #0f0c29 ;
+   --col8 : #302b63;
+   --col9 : #24243e;
+}
+*{
+   margin : 0 ;
+   padding : 0 ;
+   box-sizing : border-box ;
+   font-family: "Outfit", sans-serif;
+}
+.app{
+   min-height: 100vh ;
+   color : white ;
+   background: linear-gradient( var(--col1), var(--col2), var(--col3) );
+}
+button {
+   cursor : pointer ;
+}
+/* #  */

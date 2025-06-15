@@ -1,0 +1,71 @@
+.box {
+   margin-top : 100px ;
+   padding : 0px 10px 100px 0px;
+   display: flex ;
+   justify-content: space-around;
+   height : 300px; 
+}
+.left {
+   padding : 20px ;
+   width : 500px; 
+   border: 1px solid grey ;
+   border-radius: 15px ;
+}
+.right {
+   padding : 20px ;
+   width : 400px ;
+   display : flex ;
+   flex-direction: column ;
+}
+.right-child-1 {
+   display : flex ;
+   margin-bottom : 80px; 
+}
+.right-child-1 label {
+   flex : 1 ;
+   padding-top : 10px ;
+}
+.currency-sign {
+   padding-right : 5px ;
+   font-size : 1.7rem ;
+}
+.right-child-2 {
+   display : flex ;
+   gap : 10px ;
+}
+.input-box {
+   border-radius: 5px;
+   text-align : right ;
+   /* flex : 1 ; */
+   font-size : 16px ;
+   outline : none ;
+   border : none ;
+   height : 40px ;
+   width : 180px ;
+   padding-right : 10px ;
+}
+.butt {
+   flex: 1;
+   border-radius: 5px;
+   padding: 10px;
+   border: none;
+   color: white;
+   cursor: pointer;
+   text-align: center;
+   display: inline-block;
+   text-decoration: none;
+}
+#green {
+   background: #04B488 ;
+}
+#green:hover {
+   background: #2adf20;
+   transform: scale(1.05)
+}
+#red {
+   background: #f90250 ; 
+}
+#red:hover {
+   background: rgba(255, 42, 0, 0.938);
+   transform: scale(1.05)
+}

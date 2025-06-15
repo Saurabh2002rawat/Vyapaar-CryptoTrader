@@ -1,0 +1,26 @@
+#trxn {
+   margin-bottom : 40px; 
+   padding : 40px 0px ;
+}
+.bada {
+   display : flex ;
+   flex-direction: row-reverse ;
+   justify-content: space-around ;
+}
+.sell-img {
+   height : 80% ;
+}
+.currentPrice {
+   margin-top : 15px ;
+}
+.input3{
+   height : 36px ;
+   padding-left : 8px;
+   border : none ;
+   border-radius : 5px ;
+}
+#sell-btn2 {
+   margin-left : 10px ;
+   margin-bottom : 12px ;
+   width : 100px ;
+}
