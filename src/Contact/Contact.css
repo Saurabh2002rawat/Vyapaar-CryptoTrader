@@ -80,8 +80,9 @@ i{
    transition: .3s;
    color : white ;
    background: var(--col5) ;
+   cursor : pointer ;
 }
-.social-media i:hover {
+.personal-info ul li i:hover ,.social-media i:hover {
    background: var(--col4) ;
    transform: translateY(-20%);
 }
@@ -132,12 +133,12 @@ i{
 .input-box2 .input:valid ~ label{
    top : -1px ;
    left : 10px;
-   background: var(--col6);
+   background: var(--col9);
    font-weight : 500 ;
    font-size : 12px ;
    padding : 5px ;
 }
-#message{
+#msg{
    resize : none ;
    height : 150px ;
    overflow : auto ;
@@ -155,9 +156,10 @@ i{
    font-size : 16px ;
    color : var(--col5) ;
    font-weight : 500 ;
+   transition: 0.3s ease-in-out;
 }
 .bttn:hover {
-   transform: scale(1.07) ;
+   transform: scale(1.05) ;
 }
 @media ( max-width:850px) {
    .item {

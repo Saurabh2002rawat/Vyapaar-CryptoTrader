@@ -6,6 +6,7 @@ import Home from './Home/Home.jsx'
 import Coin from './Coin/Coin.jsx'
 import Portfolio from '../Portfolio/Portfolio.jsx' 
 import Profile from '../Profile/Profile.jsx'
+import Card from '../Profile/Card.jsx'
 import Buying from './transaction/Buying.jsx'
 import Selling from './transaction/Selling.jsx'
 import Contact from '../Contact/Contact.jsx'
@@ -28,6 +29,7 @@ const Dash = () => {
             <Route path="coin/:coinId" element={<Coin />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="profile/*" element={<Profile />} />
+            <Route path="profile/card/:amt" element={<Card />} />
             <Route path="buying/:coinId" element={<Buying />} />
             <Route path="selling/:coinId" element={<Selling />} />
             <Route path="contact" element={ <Contact /> } />

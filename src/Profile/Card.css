@@ -1,0 +1,224 @@
+.badaCard i {
+   background: none;
+   color : grey ;
+   transition: .3s ease-in;
+}
+.badaCard i:hover {
+   cursor : pointer ;
+   color : black ;
+}
+.badaCard{
+   margin : 30px auto 35px auto ;
+   background: linear-gradient( var(--col7),var(--col8),var(--col9) ) ;
+   box-shadow : 0px 0px 20px 10px rgba(0,0,0,.4) ;
+   height : 60vh ;
+   width : 80vw ;   
+   display : flex ;
+   flex : 2 2 4 ;
+   border-radius : 20px ;
+}
+.leftCard {
+   flex : 0.9 ;
+   margin : 15px 15px ;
+   width : 95% ;
+}
+.leftCard img {
+   height : 30px ;
+   margin-right : 10px ;
+   border-radius : 5px ;
+}
+.lu {
+   background: whitesmoke;
+   margin-top : 20px ;
+   padding : 10px 15px;
+   height : 15vh ;
+   border-radius: 5px ;
+   color : black ;
+}
+.lu > :nth-child(1) {
+   font-size: smaller;
+}
+.lu > :nth-child(2) {
+   font-weight: 500;
+   font-size: x-large;
+}
+.ld {
+   background: whitesmoke;
+   color : black ;
+   margin : 10px 0px ;
+   border-radius: 5px ;
+   height: 5vh ;
+   padding : 1px 10px ;
+   font-size : smaller;
+}
+.rightCard {
+   color : black ;
+   margin : 10px ;
+   border-radius : 10px ;
+   flex : 2 ;
+   background: whitesmoke ;
+   display : flex ;
+   padding : 5px ;
+   background: rgb(208, 204, 204) ;
+}
+.rlCard {
+   flex : 1.2 ;
+}
+.rlCard p {
+   margin-bottom : 10px ;
+}
+.rlBox {
+   height: 10vh ;
+   /* border-radius : 5px ; */
+   display : flex ;
+   justify-content: space-between ;
+   align-items : center ;
+   margin-left : -5px ;
+   padding: 0px 15px ;
+   transition : .3s ease-in-out ;
+}
+.rlBox:hover{
+   background: whitesmoke;
+   cursor : pointer ;
+}
+.rlBoxDiv img{
+   padding-left : 5px ;
+}
+.rlBox img {
+   height : 25px ;
+}
+.rlCard button {
+   display : block ;
+   margin : 10px auto ;
+   background: whitesmoke;
+   border-radius : 20px ;
+   width : 50% ;
+   height : 35px ;
+   border : none ;
+}
+.rlCard button:hover {
+   border : 2px solid grey ;
+}
+.rrCard {
+   flex : 1 ;
+   background: whitesmoke;
+   border-radius: 5px ;
+   padding : 5px ;
+}
+.rrCardTop {
+   display : flex ;
+   justify-content: space-between;
+}
+.rrCardTop > :nth-child(2) {
+   display : flex ;
+   gap : 5px ;
+}
+/* #cardP{
+   font-size : smaller ;
+   color : grey ;
+} */
+
+/********************************* CheckOut Form CSS ***************************************/
+.cardForm {
+   margin-top : 20px ;
+}
+.cardNo{
+   border : 1px solid grey ;
+   margin : 5px 0px ;
+   padding : 6px ;
+   height : 5vh ;
+   border-radius : 3px ;
+}
+.cvv {
+   display : flex ;
+   gap : 5px; 
+}
+.cvv > :nth-child(1) {
+   border : 1px solid grey ;
+   flex : 1.5 ;
+   margin : 5px 0px ;
+   padding : 6px ;
+   height : 5vh ;
+   border-radius : 3px ;
+}
+.cvv > :nth-child(2) {
+   border : 1px solid grey ;
+   flex : 1 ;
+   margin : 5px 0px ;
+   padding : 6px ;
+   height : 5vh ;
+   border-radius : 3px ;
+}
+.cardName {
+   width : 100% ;
+   border : 1px solid grey ;
+   margin : 5px 0px 10px 0px ;
+   border-radius : 3px ;
+   padding : 6px ;
+   height : 5vh ;
+   background: whitesmoke;
+}
+.cardName::placeholder{
+   color : #aab7c4 ;
+}
+.cardInput{
+   cursor : pointer ;
+}
+.cardForm button {
+   width : 100% ;
+   border : none ;
+   height : 6vh ;
+   background: #7827ff ;
+   color : whitesmoke ;
+   border-radius: 3px ;
+   transition: 0.5s ease-in-out;
+}
+.cardForm button:hover {
+   background: var(--col8);
+}
+
+
+
+
+.otp{
+   margin-top : 60px ;
+}
+.otp span {
+   display : flex ;
+   justify-content: center;
+}
+.otp input{
+   width : 100% ;
+   margin : 5px 0px 10px 0px ;
+   border-radius : 3px ;
+   padding : 6px ;
+   height : 5vh ;
+   background: whitesmoke;
+   text-align : center ;
+}
+
+.animateOtp p {
+   text-align: center ;
+   color : grey ;
+   font-size: smaller;
+   margin-top : 30px ;
+}
+.spinnerOtp {
+   display : grid ;
+   place-self : center ;
+   min-height : 80vh ;
+}
+.spinOtp {
+   width : 65px ;
+   height : 65px ;
+   margin-top : 50px ;
+   border : 5px solid #bdbdbd ;
+   border-top-color : #4500c6 ;
+   border-radius : 100% ;
+   animation : rotate 1.5s infinite ; 
+}
+@keyframes rotate {
+   100% {
+      transform : rotate(360deg) ;
+   }
+}

@@ -7,9 +7,6 @@ import { Link } from 'react-router-dom'
 import { auth } from '../../../backend/firebase';
 import { NavLink } from 'react-router-dom';
 
-
-
-
 const Navbar = () => {
 
   const {setCurrency} = useContext(CoinContext)  

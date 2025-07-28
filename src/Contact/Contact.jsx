@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import emailjs from '@emailjs/browser'
 import './Contact.css' ;
+
 const Contact = () => {
+   const formRef = useRef () ;
+   const sendEmail = (e) => {
+      e.preventDefault () ;
+
+      emailjs.sendForm( 
+         import.meta.env.VITE_EMAILJS_SERVICE_ID,
+         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+         formRef.current, 
+         import.meta.env.VITE_EMAILJS_USER_ID
+      ).then( () => {
+            alert ( "Thanks for the Mail! Will Contact you soon " ) ;
+            formRef.current.reset () ;
+      },(error) => {
+         alert ( "Failed to send Email : " + error.text ) ;
+         }
+      );
+   };
   return (
    <div className="bodi">
     <div className="contain">
@@ -29,21 +48,21 @@ const Contact = () => {
          </div>
          <div className="submit-form">
             <h4 className="third-text text">Contact Me </h4>
-            <form action = "" id="contact-form">
+            <form ref={formRef} onSubmit={sendEmail} id="contact-form">
                   <div className="input-box2">
-                     <input type="text" className="input" required ></input>
+                     <input type="text" className="input" name="Name" required ></input>
                      <label>Name</label>
                   </div>
                   <div className="input-box2">
-                     <input type="email" className="input" required ></input>
+                     <input type="email" className="input" name="Email" required ></input>
                      <label>Email</label>
                   </div>
                   <div className="input-box2">
-                     <input type="text" className="input" required ></input>
+                     <input type="text" className="input" name="Subject" required ></input>
                      <label>Subject</label>
                   </div>
                   <div className="input-box2">
-                     <textarea className="input" id="message" cols="30" rows="10" required ></textarea>
+                     <textarea className="input" name="Message" id="msg" cols="30" rows="10" required ></textarea>
                      <label>Message</label>
                   </div>
                   <button type="submit" className="bttn">Submit </button>

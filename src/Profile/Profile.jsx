@@ -3,17 +3,26 @@ import { auth, db } from '../../backend/firebase.js';
 import { doc, getDoc } from 'firebase/firestore';
 import { CoinContext } from '../components/context/coinContext';
 import './Profile.css'
-import Enter from './Enter.jsx' ;
-import { Route, Routes } from 'react-router-dom';
-import Add from './Add.jsx'
-import Withdraw from './Withdraw.jsx'
-import Otp from './Otp.jsx'
-import Otp2 from './Otp2.jsx'
-
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   const [userDetails, setUserDetails] = useState(null);
   const { currency } = useContext(CoinContext);
+
+  const [amt, setAmt ] = useState ('') ;
+   const navigate = useNavigate() ;
+
+   const handleSubmit = (e)  => {
+      if ( !amt ) {
+         alert ( "Enter a valid amount ") ;
+         return ;
+      }
+      let finalAmt = amt ;
+      if ( e ) {
+         if ( e == 'withdraw' )   finalAmt = -finalAmt ;
+         finalAmt = (finalAmt * getConversionRate2()).toFixed(2) ;
+         navigate ( `card/${finalAmt}`) ;
+      }}
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -30,12 +39,24 @@ function Profile() {
     return () => unsubscribe();
   }, []);
 
-  const getConversionRate = () => {
+  const getConversionRate = () => {          // for converting balance fetched from the firestore
     switch (currency.name) {
       case "usd":
         return 1 / 85.51;
       case "eur":
         return 1 / 99.14;
+      case "inr":
+      default:
+        return 1;
+    }
+  };
+
+  const getConversionRate2 = () => {         // for converting balance added in the input box
+    switch (currency.name) {
+      case "usd":
+        return 85.51;
+      case "eur":
+        return 99.14;
       case "inr":
       default:
         return 1;
@@ -60,14 +81,27 @@ function Profile() {
         <p>Loading user data...</p>
       )}
       </div>
-      <Routes>
-         <Route index element={<Enter/>} />
-         <Route path="/add/:amt/*" element= {<Add />} />
-         <Route path="/add/:amt/otp" element = {<Otp />} />
-         <Route path="/withdraw/:amt/*" element = {<Withdraw />} />
-         <Route path="/withdraw/:amt/otp2" element = {<Otp2 />} />
 
-      </Routes>
+
+      <div className="right">
+      <div className="right-child-1">
+         <label><h5>Enter Amount </h5></label> 
+         <p className="currency-sign">
+            {currency.symbol}
+         </p><input type = "number" className = "input-box" 
+            name="amt" value={amt} onChange={(e) => setAmt(e.target.value)} required />
+      </div>
+      <div className="right-child-2">
+         <button id="green" className = "butt" onClick={ () => handleSubmit('add')  } >
+            Add Money
+         </button>
+         <button className="butt" id="red" onClick={ () => handleSubmit ('withdraw') } >
+            Withdraw
+         </button>
+         </div>
+      </div>
+
+
     </div>
   );
 }

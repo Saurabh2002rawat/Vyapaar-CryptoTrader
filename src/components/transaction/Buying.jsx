@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../backend/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
@@ -7,17 +7,16 @@ import './transaction.css'
 
 const Buying = () => {
   const { coinId } = useParams();
-   const [coinData , setCoinData ] = useState () ;
+  const [coinData , setCoinData ] = useState () ;
   
   const navigate = useNavigate();
   const [price, setPrice] = useState(null);
   const [amount, setAmount] = useState('');
   const [userData, setUserData] = useState(null);
-  const [inrToSelectedRate, setInrToSelectedRate] = useState(1); // Exchange rate
+  const [inrToSelectedRate, setInrToSelectedRate] = useState(1);
   const { currency } = useContext(CoinContext);
-
+  
   useEffect(() => {
-    // Fetch current user data
     const unsubscribe = auth.onAuthStateChanged(async (u) => {
       if (u) {
         const userRef = doc(db, 'Users', u.uid);
@@ -46,12 +45,12 @@ const Buying = () => {
             eur: data.eur.inr
           };
           if (rates[currency.name]) {
-            setInrToSelectedRate(1 / rates[currency.name]); // INR → USD/EUR
+            setInrToSelectedRate(1 / rates[currency.name]); 
           }
         })
         .catch(err => console.error(err));
     } else {
-      setInrToSelectedRate(1); // 1:1 for INR
+      setInrToSelectedRate(1); 
     }
 
     return () => unsubscribe();
@@ -80,7 +79,6 @@ const Buying = () => {
 
     const totalCost = price * buyAmount;
 
-    // Convert displayed currency cost to INR for comparison
     const totalCostInINR = totalCost / inrToSelectedRate;
 
     if (totalCostInINR > userData.balance) {
@@ -143,7 +141,10 @@ const Buying = () => {
           </div>
         </>
       ) : (
-        <p>Loading data...</p>
+        <div className="spinner">
+            <div className="spin" style={{ marginBottom: "100px" }}>
+            </div>
+         </div>
       )}
     
       </div>

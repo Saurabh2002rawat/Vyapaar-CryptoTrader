@@ -142,7 +142,10 @@ const Selling = () => {
           </div>
         </>
       ) : (
-        <p>Loading data...</p>
+        <div className="spinner" style={{ marginBottom: "100px" }}>
+            <div className="spin">
+            </div>
+         </div>
       )}
     </div>
   );

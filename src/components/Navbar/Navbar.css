@@ -8,7 +8,12 @@
 }
 .navbar .logo {
    width : max ( 12vw, 120px) ;
-   margin-bottom : 5px ;
+   padding-bottom : 10px ;
+   transition : 0.3s ease-in-out ;
+}
+.navbar .logo:hover {
+   /* transform: translateY(-3px) ; */
+   transform: scale(1.03) ;
 }
 .navbar ul {
    display : flex ;
@@ -30,6 +35,12 @@
    border : 2px solid white ;
    background: transparent ;
    color : white ;
+   transition: 0.3s ease-in-out;
+}
+.navbar select:hover {
+   /* border: 2px solid rgba(0, 55, 255, 0.591) ; */
+   cursor : pointer ;
+   transform : scale(1.05) ;
 }
 .navbar select option {
    background-color : #09005c;
@@ -48,10 +59,11 @@
    background: white;
    border : none ;
    cursor : pointer ;
+   transition: 0.3s ease-in-out;
 }
 .navbar button:hover {
    transform: scale(1.05) ;
-   box-shadow: 0px 0px 5px 5px rgba(0, 55, 255, 0.591) ;
+   /* box-shadow: 0px 0px 5px 5px rgba(0, 55, 255, 0.591) ; */
 }
 .navbar button img {
    width : 13px ;  
@@ -59,10 +71,11 @@
 } 
 
 #navBar:hover {
-   padding: 10px 20px ;
+   color : white ;
+   /* padding: 10px 20px ;
    border-radius : 10px ;
    background-color: var(--col6) ;
-   box-shadow: 0px 0px 5px 5px rgba(0, 55, 255, 0.5) ;
+   box-shadow: 0px 0px 5px 5px rgba(0, 55, 255, 0.5) ; */
 }  
 @media (max-width:900px) {
    .navbar {

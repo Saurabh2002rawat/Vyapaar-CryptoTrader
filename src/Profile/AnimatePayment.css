@@ -1,0 +1,65 @@
+.containerr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white ;
+  border-radius : 10px ;
+}
+
+.coinn {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, gold 60%, goldenrod 100%);
+  border: 15px solid #b8860b;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  transition: background 0.5s, border 0.5s;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(1080deg);
+  }
+}
+
+.successs {
+  background: #28a745;
+  border-color: #1e7e34;
+}
+
+.faill {
+  background: #dc3545;
+  border-color: #a71d2a;
+}
+
+.symboll {
+  display: block;
+}
+
+.messagee {
+  margin-top: 20px;
+  font-size: 24px;
+  display: block;
+}
+
+.messagee.greenn {
+  color: #28a745;
+}
+
+.messagee.redd {
+  color: #dc3545;
+}
+
+#redirectt {
+   font-size: 12px ;
+   text-align: center;
+}

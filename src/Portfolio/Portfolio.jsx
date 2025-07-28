@@ -45,13 +45,12 @@ function Portfolio() {
       {userDetails ? (
          <>
          <div className="heros">
-          <h3>Welcome {userDetails.fname}</h3>
+          <h3>Your Portfolio</h3>
           {/* <p>Email: {userDetails.email}</p> */}
           <h4>Your Balance: {currency.symbol}
             { (userDetails.balance * getConversionRate() )?.toFixed(2)}</h4>
         </div>
          <div className="port">
-            <h4 className="heading">Your Portfolio:</h4>
 
       <div className="crypto-table">
          <div className="table-layout">
@@ -95,7 +94,14 @@ function Portfolio() {
           </div>
         </>
       ) : (
+         <>
         <p>Loading user data...</p>
+        <div className="spinner">
+            <div className="spin">
+               
+            </div>
+         </div>
+         </>
       )}
     </div>
   );
