@@ -2,8 +2,8 @@
    <p> A Cryptocurrency Trading Website simulating buying and selling of coins. </p>
 
 <h2> How to Run </h2>
-   - npm run dev :    for frontend 
-   - nodemon ./backend/stripe.js :   for Stripe 
+   - npm run dev :    for frontend <br />
+   - nodemon ./backend/stripe.js :   for Stripe <br />
 
 <h2> Demo Card Details for Stripe Payment Gateway </h2>
    - <b> visa card : </b>         4242 4242 4242 4242 <br />
