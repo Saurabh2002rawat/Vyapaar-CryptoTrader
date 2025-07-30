@@ -11,6 +11,6 @@
    - <b> failed card :  </b>  4000 0000 0000 0002 <br />
 
 <h2> Credits </h2>
-   - CoinGecko site 
-   - Stripe 
-   - Exchange Rate api 
+   - CoinGecko site <br />
+   - Stripe <br />
+   - Exchange Rate api <br />
