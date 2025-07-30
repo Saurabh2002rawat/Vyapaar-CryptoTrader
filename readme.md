@@ -6,9 +6,9 @@
    - nodemon ./backend/stripe.js :   for Stripe 
 
 <h2> Demo Card Details for Stripe Payment Gateway </h2>
-   - <b> visa  </b>         4242 4242 4242 4242 <br />
-   - <b> mastercard </b>	   5555 5555 5555 4444 <br />
-   - <b> failed card  </b>  4000 0000 0000 0002 <br />
+   - <b> visa card : </b>         4242 4242 4242 4242 <br />
+   - <b> mastercard : </b>	   5555 5555 5555 4444 <br />
+   - <b> failed card :  </b>  4000 0000 0000 0002 <br />
 
 <h2> Credits </h2>
    - CoinGecko site 
