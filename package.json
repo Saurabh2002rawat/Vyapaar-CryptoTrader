@@ -12,8 +12,8 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
-    "@stripe/react-stripe-js": "^3.8.0",
-    "@stripe/stripe-js": "^7.6.1",
+    "@stripe/react-stripe-js": "^3.8.1",
+    "@stripe/stripe-js": "^7.7.0",
     "bootstrap": "^5.3.6",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",

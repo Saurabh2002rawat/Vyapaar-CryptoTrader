@@ -11,7 +11,7 @@ const PaymentStatus = ({ success }) => {
 
     const redirectTimeout = setTimeout(() => {
       window.location.href = '/dash/profile';
-    }, 5000);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);

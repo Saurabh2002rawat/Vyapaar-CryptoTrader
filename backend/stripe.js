@@ -1,29 +1,34 @@
+// Change from require(...) to import ...
 import express from 'express';
 import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-dotenv.config( { path : '../.env'}); 
+dotenv.config();
 
 const app = express();
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY); 
-// console.log( process.env.STRIPE_SECRET_KEY) ;
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
 app.use(cors());
 app.use(express.json());
 
 app.post('/create-payment-intent', async (req, res) => {
   const { amount } = req.body;
 
+  if (!amount || typeof amount !== 'number' || amount < 100) {
+    return res.status(400).send({ error: 'Invalid amount' });
+  }
+
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'inr',
-      automatic_payment_methods: { enabled: true },
+      payment_method_types: ['card'],
     });
-   //  console.log("Received amount:", amount);
+
     res.send({ clientSecret: paymentIntent.client_secret });
-  } catch (error) {
-    res.status(400).send({ error: error.message });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
   }
 });
 

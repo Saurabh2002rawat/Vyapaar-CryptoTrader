@@ -5,9 +5,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
 import { CoinContext } from '../components/context/coinContext';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
 
 function CheckoutForm( {amt , onCompletion} ) {
   const stripe = useStripe() ;
@@ -57,12 +55,9 @@ function CheckoutForm( {amt , onCompletion} ) {
     console.log ( clientSecret) ;
 
     if (!clientSecret ) {
-         toast.error("Sorry ! Can't process your payment right now. Please try again later!", {
-            position: "top-center",
-            autoClose: 3000,
-            onClose: () => window.location.href = "/dash/profile" ,
-         }) ;
-      setLoading(false);
+  alert("Could not create payment intent. Try again.");
+  setLoading(false);
+  return;
 }
 
     const paymentResult = await stripe.confirmCardPayment(clientSecret, {
@@ -112,6 +107,10 @@ function CheckoutForm( {amt , onCompletion} ) {
             console.error ( "Error updating Balance" , e ) ;
          }
 
+
+
+
+
       onCompletion("true") ;
     }
 
@@ -132,7 +131,6 @@ function CheckoutForm( {amt , onCompletion} ) {
   };
 
   return (
-   <>
     <form className="cardForm">
          {animateOtp && (
             <div className="animateOtp">
@@ -168,20 +166,14 @@ function CheckoutForm( {amt , onCompletion} ) {
                setTimeout( () => {
                   setAnimateOtp (false) ;
                   setShowOtp (true) ;
-               } , 1500 ) ;  
+               } , 3000 ) ;  
             }
-            else    {
-                  toast.error("Please Enter Proper Card Details!", {
-                  position: "top-center",
-               }) 
-            }
+            else     alert ( "Please enter proper card details ")
          }} >
             Send OTP
          </button>
          </div>
     </form>
-         <ToastContainer />
-         </>
   );
 }
 

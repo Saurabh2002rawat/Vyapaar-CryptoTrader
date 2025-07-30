@@ -4,6 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { CoinContext } from '../components/context/coinContext';
 import './Profile.css'
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Profile() {
   const [userDetails, setUserDetails] = useState(null);
@@ -13,13 +14,25 @@ function Profile() {
    const navigate = useNavigate() ;
 
    const handleSubmit = (e)  => {
-      if ( !amt ) {
-         alert ( "Enter a valid amount ") ;
+      if ( !amt || amt < 0 ) {
+         toast.error("Please Enter a Valid Amount !", {
+                     position: "top-center",
+                  }) ;
          return ;
       }
       let finalAmt = amt ;
       if ( e ) {
-         if ( e == 'withdraw' )   finalAmt = -finalAmt ;
+         // console.log(userDetails.balance*getConversionRate() + Number(finalAmt)) ;
+         
+         if ( e == 'withdraw' )  {
+            finalAmt = -finalAmt ;
+            if ( userDetails.balance*getConversionRate() + Number(finalAmt) < 0 ) {
+               toast.error("You don't have Enough Funds !", {
+               position: "top-center",
+            }) ;
+            return ;
+         }
+            }
          finalAmt = (finalAmt * getConversionRate2()).toFixed(2) ;
          navigate ( `card/${finalAmt}`) ;
       }}
@@ -100,7 +113,7 @@ function Profile() {
          </button>
          </div>
       </div>
-
+<ToastContainer />
 
     </div>
   );
