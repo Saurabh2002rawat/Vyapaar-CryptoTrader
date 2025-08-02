@@ -13,7 +13,7 @@ const Selling = () => {
   const navigate = useNavigate();
   const [price, setPrice] = useState(null);
   const [amount, setAmount] = useState('');
-     const [coinData , setCoinData ] = useState () ;
+  const [coinData , setCoinData ] = useState () ;
   
   const [userData, setUserData] = useState(null);
   const [inrToSelectedRate, setInrToSelectedRate] = useState(1);

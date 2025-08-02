@@ -58,7 +58,7 @@ const Buying = () => {
     }
 
     return () => unsubscribe();
-  }, [coinId, currency]);
+  }, [ coinId, currency ]);
 
   const fetchCoinData = async () => {
       const options = {method: 'GET', headers: {accept: 'application/json'}};
@@ -85,7 +85,7 @@ const Buying = () => {
 
     const totalCost = price * buyAmount;
 
-    const totalCostInINR = totalCost / inrToSelectedRate;
+    const totalCostInINR = totalCost * getConversionRate().toFixed(2);
 
     if (totalCostInINR > userData.balance) {
       toast.error("Not Enough Balance !", {
@@ -122,6 +122,18 @@ const Buying = () => {
 
   const owned = userData?.portfolio?.[coinId]?.amount || 0;
 
+   const getConversionRate = () => {          // for converting balance fetched from the firestore
+    switch (currency.name) {
+      case "usd":
+        return 1 / 85.51;
+      case "eur":
+        return 1 / 99.14;
+      case "inr":
+      default:
+        return 1;
+    }
+  };
+
   return (
     <div className="container mt-4" id="trxn">
 
@@ -136,7 +148,7 @@ const Buying = () => {
           <p  className="currentPrice">Current Price: {currency.symbol}{price}</p>
           <p>
             Your Balance: {currency.symbol}
-            {(userData.balance * inrToSelectedRate).toFixed(2)}{' '}
+            {(userData.balance * getConversionRate()).toFixed(2)}{' '}
             <span style={{ fontSize: '0.8em', color: 'gray' }}>(converted from ₹{userData.balance})</span>
           </p>
            <p>You own: {owned} {coinId}</p>
