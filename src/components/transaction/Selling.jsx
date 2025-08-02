@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../../backend/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { CoinContext } from '../context/coinContext';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import { useINRAmount } from '../../../backend/useINRAmount';
 import './transaction.css'
 
 const Selling = () => {
@@ -147,6 +150,7 @@ const Selling = () => {
             </div>
          </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

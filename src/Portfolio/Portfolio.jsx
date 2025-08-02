@@ -44,14 +44,15 @@ function Portfolio() {
     <div className="home">
       {userDetails ? (
          <>
-         <div className="heros">
-          <h3>Your Portfolio</h3>
           {/* <p>Email: {userDetails.email}</p> */}
+         <div className="heros">
+          <h3> </h3>
           <h4>Your Balance: {currency.symbol}
             { (userDetails.balance * getConversionRate() )?.toFixed(2)}</h4>
         </div>
          <div className="port">
 
+{ userDetails.portfolio && Object.keys(userDetails.portfolio).length > 0 ? (
       <div className="crypto-table">
          <div className="table-layout">
             <p>#</p>
@@ -62,8 +63,6 @@ function Portfolio() {
             <p className='market-cap'>Market Value</p>
          </div> 
 
-          {userDetails.portfolio ? (
-            <>
                {Object.entries(userDetails.portfolio).map(([coinId, data]) => {
                   const coinInfo = allCoin.find(coin => coin.id === coinId);
 
@@ -85,12 +84,11 @@ function Portfolio() {
                   </Link>
                   );
                })}
-            </>
-         ) : (
-            <p>No coins owned yet.</p>
-         )}
 
           </div>
+         ) : (
+         <h4> No Coins Bought yet ! Get going and start some trading !</h4>
+          )}
           </div>
         </>
       ) : (

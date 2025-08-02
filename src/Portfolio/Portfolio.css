@@ -7,6 +7,10 @@
    justify-content: space-between ;
    margin-bottom  : 8vh ;
 }
+.port h4 {
+   text-align: center ;
+   margin-top : 80px ;
+}
 .crypto-table {
    max-width : 800px ;
    margin : auto ;

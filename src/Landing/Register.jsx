@@ -20,14 +20,18 @@ function Register () {
             fname : fname ,
             email : email ,
             uid : user.uid ,
-            balance : 0 ,
+            balance : 10000 ,
             portfolio : {} ,
          }) ;
          
          console.log (user) ;
          console.log ("user registered successfully") ;
          toast.success ( 
-            "user registered" , {
+            "You have Registered Successfully !" , {
+            position : "top-center",
+         }) ;
+         toast.info ( 
+            "Congrats! You receive a joining bonus of ₹10,000 ! Happy Trading !" , {
             position : "top-center",
          }) ;
       } 

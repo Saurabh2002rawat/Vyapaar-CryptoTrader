@@ -4,6 +4,10 @@ import { auth, db } from '../../../backend/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { CoinContext } from '../context/coinContext';
 import './transaction.css'
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import { useINRAmount } from '../../../backend/useINRAmount';
+
 
 const Buying = () => {
   const { coinId } = useParams();
@@ -73,8 +77,10 @@ const Buying = () => {
 
     const buyAmount = parseFloat(amount);
     if (isNaN(buyAmount) || buyAmount <= 0) {
-      alert("Enter a valid amount");
-      return;
+      toast.warning("Please Enter a Valid Amount !", {
+      position: "top-center"
+      });
+      return ;
     }
 
     const totalCost = price * buyAmount;
@@ -82,8 +88,10 @@ const Buying = () => {
     const totalCostInINR = totalCost / inrToSelectedRate;
 
     if (totalCostInINR > userData.balance) {
-      alert(`Not enough balance (in ${currency.name.toUpperCase() })`);
-      return;
+      toast.error("Not Enough Balance !", {
+      position: "top-center"
+      });
+      return ;
     }
 
     const portfolio = userData.portfolio || {};
@@ -102,7 +110,9 @@ const Buying = () => {
       portfolio
     });
 
-    alert(`Bought ${buyAmount} ${coinId} for ${currency.symbol}${totalCost.toFixed(2)}`);
+     toast.success(`Bought ${buyAmount} ${coinId} for ${currency.symbol}${totalCost.toFixed(2)}`, {
+         position: "top-center"
+      });
     setAmount('');
     navigate('/dash/portfolio');
   };
@@ -146,7 +156,7 @@ const Buying = () => {
             </div>
          </div>
       )}
-    
+    <ToastContainer />
       </div>
 
   );
