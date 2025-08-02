@@ -73,7 +73,9 @@ const Selling = () => {
 
     const sellAmount = parseFloat(amount);
     if (isNaN(sellAmount) || sellAmount <= 0) {
-      alert("Enter a valid amount");
+      toast.warning ("Please Enter a Valid Amount !", {
+         position: "top-center"
+      });
       return;
     }
 
@@ -81,7 +83,9 @@ const Selling = () => {
     const coin = portfolio[coinId];
 
     if (!coin || coin.amount < sellAmount) {
-      alert("Not enough coins to sell");
+       toast.error("Not Enough Coins to Sell !", {
+         position: "top-center"
+      });
       return;
     }
 
@@ -107,9 +111,14 @@ const Selling = () => {
       portfolio: updatedPortfolio
     });
 
-    alert(`Sold ${sellAmount} ${coinId} for ${currency.symbol}${totalGain.toFixed(2)}`);
+    toast.info(`Sold ${sellAmount} ${coinId} for ${currency.symbol}${totalGain.toFixed(2)}`, {
+      position: "top-center",
+      autoClose: 3000 
+   });
     setAmount('');
-    navigate('/dash/portfolio');
+    setTimeout(() => {
+      navigate('/dash/portfolio');
+   }, 3000); 
   };
 
   const owned = userData?.portfolio?.[coinId]?.amount || 0;

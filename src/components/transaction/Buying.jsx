@@ -111,10 +111,13 @@ const Buying = () => {
     });
 
      toast.success(`Bought ${buyAmount} ${coinId} for ${currency.symbol}${totalCost.toFixed(2)}`, {
-         position: "top-center"
+         position: "top-center",
+         autoClose: 3000 
       });
     setAmount('');
-    navigate('/dash/portfolio');
+    setTimeout(() => {
+      navigate('/dash/portfolio');
+      }, 3000); 
   };
 
   const owned = userData?.portfolio?.[coinId]?.amount || 0;
