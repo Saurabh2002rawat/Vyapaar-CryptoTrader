@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import './Contact.css' ;
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
    const formRef = useRef () ;
@@ -13,10 +15,14 @@ const Contact = () => {
          formRef.current, 
          import.meta.env.VITE_EMAILJS_USER_ID
       ).then( () => {
-            alert ( "Thanks for the Mail! Will Contact you soon " ) ;
+            toast.success ( "Thanks for the Mail ! Will Contact you soon !" , {
+               position : "top-center",
+            }) ;
             formRef.current.reset () ;
       },(error) => {
-         alert ( "Failed to send Email : " + error.text ) ;
+         toast.error( "Failed to send Email : " + error.text , {
+            position: "top-center",
+         }) ;
          }
       );
    };
@@ -70,6 +76,7 @@ const Contact = () => {
          </div>
       </div>
       </div>
+      <ToastContainer />
     </div>
   )
 }

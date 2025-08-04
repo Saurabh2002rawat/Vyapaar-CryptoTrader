@@ -7,7 +7,7 @@ import './transaction.css'
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import { useINRAmount } from '../../../backend/useINRAmount';
-
+import emailjs from '@emailjs/browser'
 
 const Buying = () => {
   const { coinId } = useParams();
@@ -30,7 +30,6 @@ const Buying = () => {
         }
       }
     });
-    
    
 
     // Fetch coin price in selected currency
@@ -114,7 +113,10 @@ const Buying = () => {
          position: "top-center",
          autoClose: 3000 
       });
-    setAmount('');
+
+   buying_email (buyAmount, userData.balance - totalCostInINR, totalCost) ;      // calling emailJs
+    
+   setAmount('');
     setTimeout(() => {
       navigate('/dash/portfolio');
       }, 3000); 
@@ -133,6 +135,41 @@ const Buying = () => {
         return 1;
     }
   };
+/////////////////////////////// send email using email js 
+
+  const buying_email = (buyAmt, upd_bal, totalCost) => {
+      // e.preventDefault () ;
+      const templateParams = {
+         name: userData.fname,
+         email: userData.email,
+         currency_sign: currency.symbol,
+         prev_bal : ("₹ " + userData.balance) ,
+         upd_bal : ("₹ " + upd_bal ),
+         coin : coinData?.name || coinId,
+         amt: buyAmt ,
+         Price : price.toFixed(2),
+         // cost : totalCost,
+         holdings : owned
+      };
+      emailjs.send( 
+         import.meta.env.VITE_EMAILJS_SERVICE_ID_2,
+         import.meta.env.VITE_EMAILJS_TEMPLATE_ID_2,
+         templateParams, 
+         import.meta.env.VITE_EMAILJS_USER_ID_2
+      ).then( () => {
+      toast.success ( "Invoice Sent on your registered Email !" , {
+         position : "top-center",
+      }) ;
+      },(error) => {
+      toast.error( "Sorry ! Failed to send Invoice ! Error : " + error.text , {
+         position: "top-center",
+         }) ;
+      }
+      );
+   };
+
+///////////////////////////////
+
 
   return (
     <div className="container mt-4" id="trxn">
