@@ -1,6 +1,7 @@
 import {CardNumberElement, CardExpiryElement, CardCvcElement, useStripe, useElements,} from '@stripe/react-stripe-js';
 import { auth, db } from '../../backend/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import emailjs from '@emailjs/browser'
 
 import { useContext, useEffect, useState } from 'react';
 import { CoinContext } from '../components/context/coinContext';
@@ -54,10 +55,10 @@ function CheckoutForm( {amt , onCompletion} ) {
     });
 
     const {clientSecret} = await res.json();
-    console.log ( clientSecret) ;
+   //  console.log ( clientSecret) ;
 
     if (!clientSecret ) {
-         toast.error("Sorry ! Can't process your payment right now. Please try again later!", {
+         toast.error("Stripe Server Busy ! Can't process your payment right now. Please try again later!", {
             position: "top-center",
             autoClose: 3000,
             onClose: () => window.location.href = "/dash/profile" ,
@@ -95,18 +96,24 @@ function CheckoutForm( {amt , onCompletion} ) {
             const userDocRef = doc ( db, 'Users' , userDetails.uid ) ;
             await updateDoc ( userDocRef , {balance : newBalance }) ;
             if ( amt > 0 ) {
-               toast.success ( "Balance Added Successfully", {
+               toast.success ( "Balance Added Successfully using Stripe Paymeny Gateway !", {
                position : "top-center",
+               autoClose: 3000,
                }) ;
             }
             else {
-               toast.info ( "Balance Withdrawn Successfully", {
+               toast.info ( "Balance Withdrawn Successfully using Stripe Paymeny Gateway !", {
                position : "top-center",
+               autoClose: 3000,
                }) ;
             }
+
+            moneyMail ( newBalance, amt) ;             // emailJS credt debit mail
+            
+
             setTimeout(() => {
             navigate('/dash/portfolio');
-            }, 2000); 
+            }, 5000); 
          }
          catch ( e ) {
             console.error ( "Error updating Balance" , e ) ;
@@ -117,6 +124,35 @@ function CheckoutForm( {amt , onCompletion} ) {
 
     setLoading(false);
   };
+
+  const moneyMail = ( newBalance, amt ) => {
+      const templateParams = {
+         name: userDetails.fname,
+         email: userDetails.email,
+         currency_sign: currency.symbol,
+         prev_bal : ("₹ " + newBalance) ,
+         upd_bal : ("₹ " + newBalance ),
+         amt: "₹ " + (newBalance - newBalance),
+         // gateway : "Stripe",
+      };
+      emailjs.send( 
+         import.meta.env.VITE_EMAILJS_SERVICE_ID_3,
+         import.meta.env.VITE_EMAILJS_TEMPLATE_ID_3,
+         templateParams, 
+         import.meta.env.VITE_EMAILJS_USER_ID_3
+      ).then( () => {
+      toast.success ( "Invoice Sent on your registered Email !" , {
+         position : "top-center",
+         autoClose: 3000,
+      }) ;
+      },(error) => {
+      toast.error( "Sorry ! Failed to send Invoice ! Error : " + error.text , {
+         position: "top-center",
+         autoClose: 3000,
+         }) ;
+      }
+      );
+   };
 
   const style = {
       base: {

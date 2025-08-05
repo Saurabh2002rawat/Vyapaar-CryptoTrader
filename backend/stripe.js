@@ -4,7 +4,7 @@ import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ path: '../.env' });
 
 const app = express();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
